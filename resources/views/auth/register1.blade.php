@@ -57,6 +57,23 @@
                 </div>
             </div>
         </div>
+        @error('name')
+            <script>
+                alert("{{ $message }}");
+            </script>
+        @enderror
+
+        @error('email')
+            <script>
+                alert("{{ $message }}");
+            </script>
+        @enderror
+
+        @error('password')
+            <script>
+                alert("{{ $message }}");
+            </script>
+        @enderror
         <!-- Sign Up End -->
     </div>
     @include('auth.js')
