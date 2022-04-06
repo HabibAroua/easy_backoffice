@@ -29,3 +29,12 @@ Route::get
         return view('auth.login1');
     }
 );
+
+Route::get
+(
+    'register1',
+    function()
+    {
+        return view('auth.register1');
+    }
+);
