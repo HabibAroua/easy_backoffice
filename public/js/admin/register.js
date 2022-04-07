@@ -1,0 +1,14 @@
+$(document).ready
+(
+    function()
+    {
+        $("#btClick").click
+        (
+            function(e)
+            {
+                alert("Test")
+                e.preventDefault();
+            }
+        );
+    }
+);
