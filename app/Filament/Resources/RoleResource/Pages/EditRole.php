@@ -16,4 +16,10 @@ class EditRole extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    //after the action redirect to index page
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
