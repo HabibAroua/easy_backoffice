@@ -16,12 +16,15 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Select;
+use App\Filament\Resources\RoleResource\RelationManagers\PermissionsRelationManager;
 
 class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-s-cog';
+
+    protected static ?string $navigationGroup = 'Admin Management';
 
     public static function form(Form $form): Form
     {
@@ -30,7 +33,7 @@ class RoleResource extends Resource
                 Card::make()
                     ->schema([
                         TextInput::make('name')
-                            ->unique(ignoreRecord: true)
+                            ->unique(ignoreRecord: true) //if we want update it
                             ->required(),
                         Select::make('permissions')
                             ->multiple()
@@ -67,7 +70,7 @@ class RoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PermissionsRelationManager::class,
         ];
     }
     
