@@ -14,4 +14,10 @@ class CreateUser extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['name'] = "Ahmed Bader";
+        return $data;
+    }
 }

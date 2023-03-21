@@ -48,6 +48,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                
                 Forms\Components\Toggle::make('is_admin')
                     ->required(),
                 Forms\Components\TextInput::make('email')
@@ -78,12 +79,10 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\BooleanColumn::make('is_admin')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('roles.name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
