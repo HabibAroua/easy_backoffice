@@ -12,8 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Filament\Models\Contracts\FilamentUser;
-
-class User extends Authenticatable implements FilamentUser
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements FilamentUser, JWTSubject
 {
     use HasApiTokens;
     use HasFactory;
@@ -68,5 +68,26 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessFilament(): bool // Authorized only @xelero.io
     {
         return str_ends_with($this->email, '@xelero.io');
+    }
+
+
+     /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
